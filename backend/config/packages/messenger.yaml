@@ -1,0 +1,39 @@
+framework:
+    messenger:
+        # reset services after consuming messages
+        reset_on_message: true
+
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        # failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            failed: '%env(MESSENGER_TRANSPORT_DSN)%?queue_name=failed'
+            # sync: 'sync://'
+
+        routing:
+            # Route your messages to the transports
+            'App\Event\Domain\Bus\Event\Event': async
+
+        default_bus: command.bus
+        buses:
+          command.bus:
+            middleware:
+              - validation
+              - App\Event\Infrastructure\Messenger\Middleware\MessageLoggerMiddleware
+              - App\Event\Infrastructure\Messenger\Middleware\DispatchEvents
+              - dispatch_after_current_bus
+              #- doctrine_transaction
+
+          query.bus:
+            middleware:
+              - validation
+              - App\Event\Infrastructure\Messenger\Middleware\MessageLoggerMiddleware
+              - App\Event\Infrastructure\Messenger\Middleware\DispatchEvents
+
+          event.bus:
+            default_middleware: allow_no_handlers
+            middleware:
+              - validation
+              - App\Event\Infrastructure\Messenger\Middleware\MessageLoggerMiddleware

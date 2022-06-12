@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  marketplace_nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - ../backend:/var/www/backend
+      - ../frontend:/var/www/frontend
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+    ports:
+      - "8080:80"
+    depends_on:
+      - marketplace_php
+      - marketplace_node
+    networks:
+      - marketplace_network
+
+  marketplace_php:
+    build:
+      context: ./php-fpm
+    volumes:
+      - ../backend:/var/www/backend
+    #user: ${DOCKERUSER}:${DOCKERGROUP}
+#    depends_on:
+#      - marketplace_database
+    networks:
+      - marketplace_network
+
+#  marketplace_redis:
+#    image: redis:alpine
+#    ports:
+#      - "6379:6379"
+#    networks:
+#      - marketplace_network
+
+  marketplace_node:
+    build:
+      context: ./node
+    volumes:
+      - ../frontend:/var/www/frontend
+    networks:
+      - marketplace_network
+
+#  marketplace_database:
+#    build:
+#      context: ./database
+#    volumes:
+#      - db_marketplace:/var/lib/mysql
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: secret
+#      MYSQL_DATABASE: marketplace
+#      MYSQL_USER: devel
+#      MYSQL_PASSWORD: devel
+#    networks:
+#      - marketplace_network
+
+networks:
+  marketplace_network:
+    driver: bridge
+
+volumes:
+  db_marketplace: {}

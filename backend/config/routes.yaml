@@ -1,0 +1,4 @@
+
+index:
+    path: /api
+    controller: App\MarketPlace\Infrastructure\UI\Controller\DefaultController::index

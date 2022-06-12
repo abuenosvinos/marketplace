@@ -1,0 +1,20 @@
+
+basket-new:
+    path: /api/basket
+    controller: App\MarketPlace\Infrastructure\UI\Controller\Basket\NewController
+    methods: POST
+
+basket-resume:
+    path: /api/basket/{identifier}
+    controller: App\MarketPlace\Infrastructure\UI\Controller\Basket\GetController
+    methods: GET
+
+basket-add-product:
+    path: /api/basket/{identifier}/product/{code}
+    controller: App\MarketPlace\Infrastructure\UI\Controller\Basket\AddProductController
+    methods: PUT
+
+basket-add-voucher:
+    path: /api/basket/{identifier}/voucher/{code}
+    controller: App\MarketPlace\Infrastructure\UI\Controller\Basket\AddVoucherController
+    methods: PUT

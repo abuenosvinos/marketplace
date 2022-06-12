@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "0d29f861-ceeb-435a-92b1-f76cf531e63d",
+		"name": "Marketplace",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Basket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Basket created\", function () {",
+							"    var responseJson = pm.response.json();",
+							"    pm.collectionVariables.set('identifier', responseJson.identifier)",
+							"    console.log(\"Identifier: \", responseJson.identifier);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://marketplace.local:8080/api/basket",
+					"protocol": "http",
+					"host": [
+						"marketplace",
+						"local"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"basket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Basket",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "identifier",
+							"value": "{{identifier}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://marketplace.local:8080/api/basket/{{identifier}}",
+					"protocol": "http",
+					"host": [
+						"marketplace",
+						"local"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"basket",
+						"{{identifier}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product A",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://marketplace.local:8080/api/basket/{{identifier}}/product/A",
+					"protocol": "http",
+					"host": [
+						"marketplace",
+						"local"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"basket",
+						"{{identifier}}",
+						"product",
+						"A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product B",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://marketplace.local:8080/api/basket/{{identifier}}/product/B",
+					"protocol": "http",
+					"host": [
+						"marketplace",
+						"local"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"basket",
+						"{{identifier}}",
+						"product",
+						"B"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product C",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://marketplace.local:8080/api/basket/{{identifier}}/product/C",
+					"protocol": "http",
+					"host": [
+						"marketplace",
+						"local"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"basket",
+						"{{identifier}}",
+						"product",
+						"C"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Voucher S",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://marketplace.local:8080/api/basket/{{identifier}}/voucher/S",
+					"protocol": "http",
+					"host": [
+						"marketplace",
+						"local"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"basket",
+						"{{identifier}}",
+						"voucher",
+						"S"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Voucher R",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://marketplace.local:8080/api/basket/{{identifier}}/voucher/R",
+					"protocol": "http",
+					"host": [
+						"marketplace",
+						"local"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"basket",
+						"{{identifier}}",
+						"voucher",
+						"R"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Voucher V",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://marketplace.local:8080/api/basket/{{identifier}}/voucher/V",
+					"protocol": "http",
+					"host": [
+						"marketplace",
+						"local"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"basket",
+						"{{identifier}}",
+						"voucher",
+						"V"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "identifier",
+			"value": ""
+		}
+	]
+}
